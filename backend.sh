@@ -66,14 +66,14 @@ VALIDATE $? "unzip backend"
 npm install &>>$LOG_FILE_NAME
 VALIDATE $? "Installing dependencies"
 
-cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service
+cp backend.service /etc/systemd/system/backend.service
 
 # Prepare MySQL Schema
 
 dnf install mysql -y &>>$LOG_FILE_NAME
 VALIDATE $? "Installing MySQL Client"
 
-mysql -h mysql.learningmaniac.fun - uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
+mysql -h mysql.learningmaniac.fun -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
 VALIDATE $? "Setting up the transactions schema and tables"
 
 systemctl daemon-reload &>>$LOG_FILE_NAME
